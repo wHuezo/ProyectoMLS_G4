@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+import joblib
 
 #  CONFIGURACIÓN 
 st.set_page_config(page_title="Valuador GRUPO 4", page_icon="📈")
