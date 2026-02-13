@@ -10,9 +10,9 @@ st.title(" Valuador de Deuda - GRUPO 4")
 #  CARGA 
 @st.cache_resource
 def load_artifacts():
-    clf = joblib.load('models/clasificador_pago.pkl')
-    reg = joblib.load('models/regresor_monto.pkl')
-    cols = joblib.load('models/columnas_modelo.pkl')
+    clf = joblib.load('clasificador_pago.pkl')
+    reg = joblib.load('regresor_monto.pkl')
+    cols = joblib.load('columnas_modelo.pkl')
     return clf, reg, cols
 
 try:
