@@ -17,9 +17,30 @@ def load_artifacts():
 
 try:
     clf, reg, model_cols = load_artifacts()
-    st.success("Sistema cargado. Ingeniería de variables activa.")
-except:
-    st.error("Error cargando modelos. Ejecuta el notebook 4 primero.")
+    st.success("✅ Sistema cargado. Ingeniería de variables activa.")
+except Exception as e:
+    st.error(f"❌ ERROR CRÍTICO CARGANDO MODELOS: {e}")
+    
+    # --- DIAGNÓSTICO AUTOMÁTICO ---
+    import os
+    st.divider()
+    st.warning("🕵️‍♂️ REPORTE DEL DETECTIVE DE DATOS:")
+    
+    # 1. ¿Dónde estoy parado?
+    ruta_actual = os.getcwd()
+    st.write(f"📍 **Estoy ejecutando desde:** `{ruta_actual}`")
+    
+    # 2. ¿Existe la carpeta models aquí?
+    ruta_models = os.path.join(ruta_actual, 'models')
+    if os.path.exists(ruta_models):
+        st.success(f"✅ La carpeta `models` SÍ existe en `{ruta_models}`")
+        # 3. ¿Qué hay adentro?
+        archivos = os.listdir(ruta_models)
+        st.info(f"📂 Archivos encontrados: {archivos}")
+    else:
+        st.error(f"⛔ La carpeta `models` NO existe en `{ruta_actual}`.")
+        st.write("💡 **Solución:** Asegúrate de que estás ejecutando el comando `streamlit run` DESDE la carpeta que contiene a `models`.")
+    
     st.stop()
 
 #  INPUTS 
